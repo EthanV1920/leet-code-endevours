@@ -37,25 +37,16 @@ class Solution:
         
         ListOut = LinkedList()
         ListOut.display()
-        # returnOutput = ListNode()
-        # intStore = ListNode() 
         carryInt = 0
-
-        while l1 and l2 != None:
-
+        
+        while l1 != None or l2 != None:
             if (l1.val + l2.val) >= 10:
-                intStore = (l1.val + l2.val) % 10
+                intStore = (l1.val + l2.val + carryInt) % 10
                 print(intStore)
 
                 carryInt = 1
 
                 ListOut.append(intStore)
-            
-            elif l1 == None:
-                ListOut.append(l2.val)
-                
-            elif l2 == None:
-                ListOut.append(l1.val)
             
             else:
                 intStore = (l1.val + l2.val) + carryInt
@@ -73,5 +64,7 @@ class Solution:
             l1 = l1.next
             l2 = l2.next
 
-        
+        if l1 == None and l2 == None and carryInt ==1:
+                ListOut.append(carryInt)
+
         return(ListOut.begin())
