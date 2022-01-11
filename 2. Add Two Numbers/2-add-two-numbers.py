@@ -1,3 +1,5 @@
+import math
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=None, next=None):
@@ -37,25 +39,37 @@ class Solution:
         
         ListOut = LinkedList()
         ListOut.display()
-        # returnOutput = ListNode()
-        # intStore = ListNode() 
         carryInt = 0
+        
+        while l1 != None or l2 != None:
+            if l1 == None:
+                intStore = (l2.val + carryInt) % 10
+                print(intStore)
 
-        while l1 and l2 != None:
+                carryInt = math.trunc((l2.val + carryInt) / 10) % 10
 
-            if (l1.val + l2.val) >= 10:
-                intStore = (l1.val + l2.val) % 10
+                ListOut.append(intStore)
+
+                l2 = l2.next
+            
+            elif l2 == None:
+                intStore = (l1.val + carryInt) % 10
+                print(intStore)
+
+                carryInt = math.trunc((l1.val + carryInt) / 10) % 10
+
+                ListOut.append(intStore)
+                l1 = l1.next
+
+            elif (l1.val + l2.val + carryInt) >= 10:
+                intStore = (l1.val + l2.val + carryInt) % 10
                 print(intStore)
 
                 carryInt = 1
 
                 ListOut.append(intStore)
-            
-            elif l1 == None:
-                ListOut.append(l2.val)
-                
-            elif l2 == None:
-                ListOut.append(l1.val)
+                l1 = l1.next
+                l2 = l2.next
             
             else:
                 intStore = (l1.val + l2.val) + carryInt
@@ -65,13 +79,17 @@ class Solution:
 
                 ListOut.append(intStore)
 
-            print("List 1: " + str(l1.val))
-            print("List 2: " + str(l2.val))
-            print("Carry: " + str(carryInt))
+                l1 = l1.next
+                l2 = l2.next
+
+            # print("List 1: " + str(l1.val))
+            # print("List 2: " + str(l2.val))
+            # print("Carry: " + str(carryInt))
             ListOut.display()
             # outptArray = outputArray.next
-            l1 = l1.next
-            l2 = l2.next
+            
 
-        
+        if l1 == None and l2 == None and carryInt == 1:
+                ListOut.append(carryInt)
+
         return(ListOut.begin())
