@@ -42,7 +42,6 @@ class Solution:
         carryInt = 0
         
         while l1 != None or l2 != None:
-<<<<<<< HEAD
             if l1 == None:
                 intStore = (l2.val + carryInt) % 10
                 print(intStore)
@@ -63,20 +62,14 @@ class Solution:
                 l1 = l1.next
 
             elif (l1.val + l2.val + carryInt) >= 10:
-=======
-            if (l1.val + l2.val) >= 10:
->>>>>>> main
                 intStore = (l1.val + l2.val + carryInt) % 10
                 print(intStore)
 
                 carryInt = 1
 
                 ListOut.append(intStore)
-<<<<<<< HEAD
                 l1 = l1.next
                 l2 = l2.next
-=======
->>>>>>> main
             
             else:
                 intStore = (l1.val + l2.val) + carryInt
@@ -99,10 +92,4 @@ class Solution:
         if l1 == None and l2 == None and carryInt == 1:
                 ListOut.append(carryInt)
 
-<<<<<<< HEAD
-=======
-        if l1 == None and l2 == None and carryInt ==1:
-                ListOut.append(carryInt)
-
->>>>>>> main
         return(ListOut.begin())
